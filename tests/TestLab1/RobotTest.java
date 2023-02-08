@@ -1,3 +1,5 @@
+package TestLab1;
+
 import Lab1.Robot;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

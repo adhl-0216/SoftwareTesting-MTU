@@ -5,9 +5,29 @@ import static java.lang.Thread.sleep;
 public class Robot {
     private String name;
     private boolean working = false;
+    private int age;
 
     public Robot(String name) {
         setName(name);
+    }
+    public Robot(String name, int age) {
+        setName(name);
+        setAge(age);
+    }
+
+    public String checkAge() {
+        return (age > 20)?"Too old":"Age ok";
+    }
+
+    public double checkCost() {
+        if (age <= 5) {
+            return 10000.00;
+        }
+        else if (age <= 10) {
+            return 7500.00;
+        }
+        else
+            return 5000.00;
     }
 
     public boolean isWorking() {
@@ -39,5 +59,14 @@ public class Robot {
             throw new IllegalStateException();
         }
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if(age > 30) throw new IllegalArgumentException();
+        this.age = age;
     }
 }

@@ -10,6 +10,20 @@ public class Driver {
         setDriverNum(driverNum);
         setDriverName(driverName);
     }
+
+    public void checkNumberValid() throws IllegalArgumentException {
+        try {
+            if (driverNum > 5000) {
+            throw new IllegalArgumentException(
+                    "Driver number not valid");
+            }
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error " + e.getMessage());
+        }
+
+        System.out.println( "Driver number valid");
+    }
     public int getDriverNum() {
         return driverNum;
     }

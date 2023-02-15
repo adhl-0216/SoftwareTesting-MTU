@@ -1,5 +1,7 @@
 package Lab1;
 
+import Lab3.RobotFees;
+
 import static java.lang.Thread.sleep;
 
 public class Robot {
@@ -68,5 +70,16 @@ public class Robot {
     public void setAge(int age) {
         if(age > 30) throw new IllegalArgumentException();
         this.age = age;
+    }
+
+    public double getTotalCost(RobotFees robotFees){
+        double cost;
+        double fees;
+
+        fees = robotFees.getCost(age);
+        System.out.printf("for age %d the cost is %f.\n", age, checkCost());
+        cost = checkCost() + fees;
+
+        return cost;
     }
 }

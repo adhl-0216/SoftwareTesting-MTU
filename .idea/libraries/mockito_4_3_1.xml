@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="mockito_4.3.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/apiguardian-api-1.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/byte-buddy-1.12.7.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/byte-buddy-agent-1.12.7.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/junit-jupiter-api-5.8.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/junit-platform-commons-1.8.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/mockito-core-4.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/mockito-junit-jupiter-4.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/objenesis-3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mockito_4.3.1/jar_files/opentest4j-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

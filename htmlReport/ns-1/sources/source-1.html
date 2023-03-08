@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Robot</title>
+  <title>Coverage Report > Driver</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">Lab1</a>
 </div>
 
-<h1>Coverage Summary for Class: Robot (Lab1)</h1>
+<h1>Coverage Summary for Class: Driver (Lab1)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -36,33 +36,45 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 <th class="coverageStat 
 ">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
   Line, %
 </th>
 </tr>
 <tr>
-  <td class="name">Robot</td>
+  <td class="name">Driver</td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    0%
   </span>
   <span class="absValue">
-    (1/1)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    46.2%
+    0%
   </span>
   <span class="absValue">
-    (6/13)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    48.3%
+    0%
   </span>
   <span class="absValue">
-    (14/29)
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
   </span>
 </td>
 </tr>
@@ -75,89 +87,58 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package Lab1;
-&nbsp;
-&nbsp;import Lab3.RobotFees;
-&nbsp;
 &nbsp;import static java.lang.Thread.sleep;
 &nbsp;
-&nbsp;public class Robot {
-&nbsp;    private String name;
-<b class="fc">&nbsp;    private boolean working = false;</b>
-&nbsp;    private int age;
+&nbsp;public class Driver {
+&nbsp;    private int driverNum;
+&nbsp;    private String driverName;
+<b class="nc">&nbsp;    private boolean banned = false;</b>
 &nbsp;
-<b class="nc">&nbsp;    public Robot(String name) {</b>
-<b class="nc">&nbsp;        setName(name);</b>
-&nbsp;    }
-<b class="fc">&nbsp;    public Robot(String name, int age) {</b>
-<b class="fc">&nbsp;        setName(name);</b>
-<b class="fc">&nbsp;        setAge(age);</b>
-&nbsp;    }
+<b class="nc">&nbsp;    public Driver(String driverName, int driverNum) {</b>
+<b class="nc">&nbsp;        setDriverNum(driverNum);</b>
+<b class="nc">&nbsp;        setDriverName(driverName);</b>
+<b class="nc">&nbsp;    }</b>
 &nbsp;
-&nbsp;    public String checkAge() {
-<b class="nc">&nbsp;        return (age &gt; 20)?&quot;Too old&quot;:&quot;Age ok&quot;;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public double checkCost() {
-<b class="fc">&nbsp;        if (age &lt;= 5) {</b>
-<b class="fc">&nbsp;            return 10000.00;</b>
+&nbsp;    public void checkNumberValid() throws IllegalArgumentException {
+&nbsp;        try {
+<b class="nc">&nbsp;            if (driverNum &gt; 5000) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException(</b>
+&nbsp;                    &quot;Driver number not valid&quot;);
+&nbsp;            }
 &nbsp;        }
-<b class="nc">&nbsp;        else if (age &lt;= 10) {</b>
-<b class="nc">&nbsp;            return 7500.00;</b>
-&nbsp;        }
-&nbsp;        else
-<b class="nc">&nbsp;            return 5000.00;</b>
+<b class="nc">&nbsp;        catch (IllegalArgumentException e) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Error &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println( &quot;Driver number valid&quot;);</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;    public int getDriverNum() {
+<b class="nc">&nbsp;        return driverNum;</b>
+&nbsp;    }
+&nbsp;    private void setDriverNum(int driverNum) throws IllegalArgumentException {
+<b class="nc">&nbsp;        if (driverNum &lt; 100) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException();</b>
+<b class="nc">&nbsp;        } this.driverNum = driverNum;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public String getDriverName() {
+<b class="nc">&nbsp;        return driverName;</b>
+&nbsp;    }
+&nbsp;    private void setDriverName(String driverName) throws IllegalArgumentException {
+<b class="nc">&nbsp;        if (driverName.isEmpty()) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException();</b>
+<b class="nc">&nbsp;        } this.driverName = driverName;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public boolean check_status() {
+<b class="nc">&nbsp;        return banned;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    public boolean isWorking() {
-<b class="nc">&nbsp;        return working;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public void talkToRobot(){
-<b class="nc">&nbsp;        working = true;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public String getWorkingMsg() {
-<b class="nc">&nbsp;        if(!working) {</b>
-<b class="nc">&nbsp;            throw new IllegalStateException();</b>
-&nbsp;        }
-<b class="nc">&nbsp;        return &quot;I&#39;m in working mode&quot;;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public void waitTillWorking() throws InterruptedException {
-&nbsp;//        while (!working) {
+&nbsp;    public void waitTillBanned() throws InterruptedException {
+<b class="nc">&nbsp;         if (banned){</b>
 <b class="nc">&nbsp;            sleep(100);</b>
-&nbsp;//        }
-&nbsp;    }
-&nbsp;    public String getName() {
-<b class="nc">&nbsp;        return name;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public void setName(String name) {
-<b class="fc">&nbsp;        if (name.isEmpty()) {</b>
-<b class="nc">&nbsp;            throw new IllegalStateException();</b>
-&nbsp;        }
-<b class="fc">&nbsp;        this.name = name;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public int getAge() {
-<b class="nc">&nbsp;        return age;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public void setAge(int age) {
-<b class="fc">&nbsp;        if(age &gt; 30) throw new IllegalArgumentException();</b>
-<b class="fc">&nbsp;        this.age = age;</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    public double getTotalCost(RobotFees robotFees){
-&nbsp;        double cost;
-&nbsp;        double fees;
-&nbsp;
-<b class="fc">&nbsp;        fees = robotFees.getCost(age);</b>
-<b class="fc">&nbsp;        System.out.printf(&quot;for age %d the cost is %f.\n&quot;, age, checkCost());</b>
-<b class="fc">&nbsp;        cost = checkCost() + fees;</b>
-&nbsp;
-<b class="fc">&nbsp;        return cost;</b>
-&nbsp;    }
+&nbsp;         }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 </code>
 </pre>
@@ -182,7 +163,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-08 10:44</div>
+    <div style="float:right;">generated on 2023-03-08 10:56</div>
 </div>
 </body>
 </html>

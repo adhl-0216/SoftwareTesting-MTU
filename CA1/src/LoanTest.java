@@ -51,12 +51,16 @@ class LoanTest {
         assertEquals(expected, actual);
     }
 
-    @ParameterizedTest()
-    @CsvFileSource(resources = "positive_test_data.csv")
-    void positiveTests(double amount, int period, double expectedRate) {
+    @ParameterizedTest(name = "PT{index}")
+    @CsvFileSource(resources = "positive_test_data.csv", numLinesToSkip = 1)
+    void positiveTests(double amount, int period, double expectedRate, double expectedMonthlyPayment, double expectedTotalPayment) {
         Loan subject = new Loan(amount, period);
         double actual = subject.getRate();
         assertEquals(expectedRate, actual);
+        double monthlyPayment = Math.round(subject.getMonthlyPayment()*100)/100.0;
+        assertEquals(expectedMonthlyPayment, monthlyPayment);
+        double totalPayment = Math.round(subject.getTotalPayment()*100)/100.0;
+        assertEquals(expectedTotalPayment, totalPayment);
     }
 
     @ParameterizedTest()

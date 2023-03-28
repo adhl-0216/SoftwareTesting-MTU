@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,16 +51,28 @@ class LoanTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void getPeriod() {
+    @ParameterizedTest()
+    @CsvFileSource(resources = "positive_test_data.csv")
+    void positiveTests(double amount, int period, double expectedRate) {
+        Loan subject = new Loan(amount, period);
+        double actual = subject.getRate();
+        assertEquals(expectedRate, actual);
     }
 
-    @Test
-    void getRate() {
+    @ParameterizedTest()
+    @CsvFileSource(resources = "negative_test_data.csv")
+    void negativeTests_outOfRange(double amount, int period) {
+        assertThrowsExactly(IllegalArgumentException.class,() ->new Loan(amount, period) );
+    }
+    @ParameterizedTest()
+    @CsvSource({"str,1","500,str"})
+    void negativeTests_invalidDataType(String amount, String period) {
+        assertThrowsExactly(IllegalArgumentException.class,() ->new Loan(1, 1) );
     }
 
     @Test
     void getMonthlyPayment() {
+        new Loan();
     }
 
     @Test

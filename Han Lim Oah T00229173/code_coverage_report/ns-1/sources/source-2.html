@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoanTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: LoanTest (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoanTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (38/38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import org.junit.jupiter.api.*;
+&nbsp;import org.junit.jupiter.params.ParameterizedTest;
+&nbsp;import org.junit.jupiter.params.provider.CsvFileSource;
+&nbsp;import org.junit.jupiter.params.provider.CsvSource;
+&nbsp;
+&nbsp;import java.lang.reflect.InvocationTargetException;
+&nbsp;import java.lang.reflect.Method;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.*;
+&nbsp;
+<b class="fc">&nbsp;class LoanTest {</b>
+<b class="fc">&nbsp;    private static Loan target = new Loan();</b>
+&nbsp;    @Test
+&nbsp;    void getAmount() {
+<b class="fc">&nbsp;        Loan subject = new Loan(500, 1);</b>
+<b class="fc">&nbsp;        double actual = subject.getAmount();</b>
+<b class="fc">&nbsp;        assertEquals(500, actual);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void getPeriod() {
+<b class="fc">&nbsp;        Loan subject = new Loan(500, 1);</b>
+<b class="fc">&nbsp;        double actual = subject.getPeriod();</b>
+<b class="fc">&nbsp;        assertEquals(1, actual);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void setAmount() throws Exception {
+<b class="fc">&nbsp;        Method setAmount = Loan.class.getDeclaredMethod(&quot;setAmount&quot;, double.class);</b>
+<b class="fc">&nbsp;        setAmount.setAccessible(true);</b>
+&nbsp;
+<b class="fc">&nbsp;        Loan subject = new Loan();</b>
+<b class="fc">&nbsp;        setAmount.invoke(subject, 500);</b>
+<b class="fc">&nbsp;        assertEquals(500, subject.getAmount());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void setPeriod() throws Exception {
+<b class="fc">&nbsp;        Method setPeriod = Loan.class.getDeclaredMethod(&quot;setPeriod&quot;, int.class);</b>
+<b class="fc">&nbsp;        setPeriod.setAccessible(true);</b>
+&nbsp;
+<b class="fc">&nbsp;        Loan subject = new Loan();</b>
+<b class="fc">&nbsp;        setPeriod.invoke(subject, 2);</b>
+<b class="fc">&nbsp;        assertEquals(2, subject.getPeriod());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void setRateBranch1() throws Exception {
+<b class="fc">&nbsp;        Method setRate = Loan.class.getDeclaredMethod(&quot;setRate&quot;, int.class);</b>
+<b class="fc">&nbsp;        setRate.setAccessible(true);</b>
+&nbsp;
+<b class="fc">&nbsp;        Loan subject = new Loan(600,5);</b>
+<b class="fc">&nbsp;        setRate.invoke(subject, 2);</b>
+<b class="fc">&nbsp;        assertEquals(10, subject.getRate());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    void setRateBranch2() throws Exception {
+<b class="fc">&nbsp;        Method setRate = Loan.class.getDeclaredMethod(&quot;setRate&quot;, int.class);</b>
+<b class="fc">&nbsp;        setRate.setAccessible(true);</b>
+&nbsp;
+<b class="fc">&nbsp;        Loan subject = new Loan(6000,5);</b>
+<b class="fc">&nbsp;        setRate.invoke(subject, 2);</b>
+<b class="fc">&nbsp;        assertEquals(8, subject.getRate());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ParameterizedTest(name = &quot;PT{index}&quot;)
+&nbsp;    @CsvFileSource(resources = &quot;positive_test_data.csv&quot;, numLinesToSkip = 1)
+&nbsp;    void positiveTests(double amount, int period, double expectedRate, double expectedMonthlyPayment, double expectedTotalPayment) {
+<b class="fc">&nbsp;        Loan subject = new Loan(amount, period);</b>
+<b class="fc">&nbsp;        double actual = subject.getRate();</b>
+<b class="fc">&nbsp;        assertEquals(expectedRate, actual);</b>
+<b class="fc">&nbsp;        double monthlyPayment = Math.round(subject.getMonthlyPayment()*100)/100.0;</b>
+<b class="fc">&nbsp;        assertEquals(expectedMonthlyPayment, monthlyPayment);</b>
+<b class="fc">&nbsp;        double totalPayment = Math.round(subject.getTotalPayment()*100)/100.0;</b>
+<b class="fc">&nbsp;        assertEquals(expectedTotalPayment, totalPayment);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @ParameterizedTest(name = &quot;NT{index}&quot;)
+&nbsp;    @CsvFileSource(resources = &quot;negative_test_data.csv&quot;)
+&nbsp;    void negativeTests(double amount, int period) {
+<b class="fc">&nbsp;        IllegalArgumentException exception = assertThrowsExactly(</b>
+&nbsp;                IllegalArgumentException.class,
+<b class="fc">&nbsp;                () -&gt; new Loan(amount, period)</b>
+&nbsp;        );
+&nbsp;
+<b class="fc">&nbsp;        assertNotNull(exception);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-28 18:59</div>
+</div>
+</body>
+</html>

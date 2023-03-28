@@ -109,7 +109,7 @@ Loan {
             if (periodInYears < 1 || periodInYears > 5)
                 throw new IllegalArgumentException();
             else
-            numberOfPayments = periodInYears * MONTHS_IN_YEAR;
+                numberOfPayments = periodInYears * MONTHS_IN_YEAR;
         }
 
     }

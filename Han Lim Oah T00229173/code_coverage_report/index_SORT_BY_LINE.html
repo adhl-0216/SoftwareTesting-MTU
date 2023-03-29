@@ -6,10 +6,9 @@
   <title>Coverage Report > Summary</title>
   <style type="text/css">
     @import "./css/coverage.css";
-    @import "./css/idea.min.css";
+    @import "./css/highlight-idea.css";
   </style>
-  <script type="text/javascript" src="./js/highlight.min.js"></script>
-  <script type="text/javascript" src="./js/highlightjs-line-numbers.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
 </head>
 
 <body>
@@ -46,7 +45,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (2/2)
+    (1/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -54,7 +53,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (21/21)
+    (10/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -70,7 +69,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (68/68)
+    (30/30)
   </span>
 </td>
   </tr>
@@ -108,7 +107,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (2/2)
+    (1/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -116,7 +115,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (21/21)
+    (10/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -132,7 +131,7 @@ Current scope:     all classes
     100%
   </span>
   <span class="absValue">
-    (68/68)
+    (30/30)
   </span>
 </td>
   </tr>
@@ -150,15 +149,18 @@ Current scope:     all classes
     @*/
 
     if (!msie || msie && msie9) {
-      hljs.highlightAll()
-      hljs.initLineNumbersOnLoad();
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-28 18:59</div>
+    <div style="float:right;">generated on 2023-03-29 11:51</div>
 </div>
 </body>
 </html>
